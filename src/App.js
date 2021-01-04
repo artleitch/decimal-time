@@ -14,7 +14,7 @@ import DigitalClock from './components/DigitalClock/DigitalClock'
 function App() {
   return (
     <div className="App">
-      <DigitalClock></DigitalClock>
+      <DigitalClock hoursDInDay="10"></DigitalClock>
     </div>
   )
 }

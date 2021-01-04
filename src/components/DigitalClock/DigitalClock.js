@@ -1,36 +1,35 @@
 import React, { useState } from 'react'
 
-const HOURSD_IN_DAY = 10
-const MINUTESD_IN_HOURD = 100
-const SECONDSD_IN_MINUTED = 100
+function DigitalClock(props) {
+  const HOURSD_IN_DAY = +props.hoursDInDay || 10
+  const MINUTESD_IN_HOURD = +props.minutesDInHour || 100
+  const SECONDSD_IN_MINUTED = +props.secondssDInMinute || 1000
 
-const getHourD = (fractionOfDay) => {
-  return Math.floor(fractionOfDay * HOURSD_IN_DAY)
-}
+  const getHourD = (fractionOfDay) => {
+    return Math.floor(fractionOfDay * HOURSD_IN_DAY)
+  }
 
-const getMinuteD = (fractionOfDay) => {
-  return Math.floor(
-    Math.floor(
-      (fractionOfDay * getSecondsDinDayD() -
-        getHourD(fractionOfDay) * MINUTESD_IN_HOURD * SECONDSD_IN_MINUTED) /
-        SECONDSD_IN_MINUTED
+  const getMinuteD = (fractionOfDay) => {
+    return Math.floor(
+      Math.floor(
+        (fractionOfDay * getSecondsDinDayD() -
+          getHourD(fractionOfDay) * MINUTESD_IN_HOURD * SECONDSD_IN_MINUTED) /
+          SECONDSD_IN_MINUTED
+      )
     )
-  )
-}
+  }
 
-const getSecondD = (fractionOfDay) => {
-  return Math.floor(
-    fractionOfDay * getSecondsDinDayD() -
-      getHourD(fractionOfDay) * MINUTESD_IN_HOURD * SECONDSD_IN_MINUTED -
-      getMinuteD(fractionOfDay) * SECONDSD_IN_MINUTED
-  )
-}
+  const getSecondD = (fractionOfDay) => {
+    return Math.floor(
+      fractionOfDay * getSecondsDinDayD() -
+        getHourD(fractionOfDay) * MINUTESD_IN_HOURD * SECONDSD_IN_MINUTED -
+        getMinuteD(fractionOfDay) * SECONDSD_IN_MINUTED
+    )
+  }
 
-const getSecondsDinDayD = () => {
-  return HOURSD_IN_DAY * MINUTESD_IN_HOURD * SECONDSD_IN_MINUTED
-}
-
-function DigitalClock() {
+  const getSecondsDinDayD = () => {
+    return HOURSD_IN_DAY * MINUTESD_IN_HOURD * SECONDSD_IN_MINUTED
+  }
   const currentTime = new Date()
   const [hour, setHour] = useState(currentTime.getHours())
   const [minute, setMinute] = useState(currentTime.getMinutes())
