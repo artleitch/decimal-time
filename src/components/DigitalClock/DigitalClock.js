@@ -38,9 +38,9 @@ function DigitalClock(props) {
   // convert to a fraction of the day?
   const fractionOfDay = totalSeconds / (60 * 60 * 24)
 
-  const [hourD, setHourD] = useState(0)
-  const [minuteD, setMinuteD] = useState()
-  const [secondD, setSecondD] = useState()
+  const [hourD, setHourD] = useState(getHourD(fractionOfDay))
+  const [minuteD, setMinuteD] = useState(getMinuteD(fractionOfDay))
+  const [secondD, setSecondD] = useState(getSecondD(fractionOfDay))
 
   useEffect(() => {
     setHourD(getHourD(fractionOfDay))
