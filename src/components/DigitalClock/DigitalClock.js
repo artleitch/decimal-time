@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 function DigitalClock(props) {
   const HOURSD_IN_DAY = +props.hoursDInDay || 10
@@ -38,12 +38,19 @@ function DigitalClock(props) {
   // convert to a fraction of the day?
   const fractionOfDay = totalSeconds / (60 * 60 * 24)
 
-  const [hourD, setHourD] = useState(getHourD(fractionOfDay))
-  const [minuteD, setMinuteD] = useState(getMinuteD(fractionOfDay))
-  const [secondD, setSecondD] = useState(getSecondD(fractionOfDay))
+  const [hourD, setHourD] = useState(0)
+  const [minuteD, setMinuteD] = useState()
+  const [secondD, setSecondD] = useState()
+
+  useEffect(() => {
+    setHourD(getHourD(fractionOfDay))
+    setMinuteD(getMinuteD(fractionOfDay))
+    setSecondD(getSecondD(fractionOfDay))
+  }, [props])
 
   return (
     <div>
+      {props.hoursDInDay}
       <p>Current hours past midnight: {hour}</p>
       <p>Current minutes past full hour: {minute}</p>
       <p>Current seconds past full minute: {second}</p>
