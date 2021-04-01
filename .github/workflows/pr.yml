@@ -1,0 +1,4 @@
+- name: Assign PR to Author
+  # You may pin to the exact commit or the version.
+  # uses: samspills/assign-pr-to-author@2645e31f001125582c383f7038206fb3c8f66974
+  uses: samspills/assign-pr-to-author@v1.0
